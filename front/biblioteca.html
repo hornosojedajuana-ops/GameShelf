@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tu biblioteca personal de videojuegos en GameShelf.">
+
+    <title>Mi biblioteca · GameShelf</title>
+
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+
+    <!-- header -->
+
+    <header class="site-header">
+
+        <nav class="nav container" aria-label="Navegación principal">
+
+            <a href="index.html" class="brand">
+                <span class="brand-icon" aria-hidden="true">GS</span>
+                <span>GameShelf</span>
+            </a>
+
+
+            <div class="nav-right">
+
+                <ul class="nav-links">
+
+                    <li>
+                        <a href="index.html">
+                            Explorar
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="index.html#destacados">
+                            Destacados
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="biblioteca.html">
+                            Mi biblioteca
+                        </a>
+                    </li>
+
+                </ul>
+
+
+                <!-- sin sesión -->
+
+                <div class="auth-area auth-guest" id="auth-guest">
+
+                    <button class="auth-link" id="btn-login" type="button">
+                        Iniciar sesión
+                    </button>
+
+                    <button class="btn btn-primary auth-register" id="btn-register" type="button">
+                        Registrarse
+                    </button>
+
+                </div>
+
+
+                <!-- con sesión -->
+
+                <div class="auth-area auth-user" id="auth-user" style="display: none;">
+
+                    <div class="user-info">
+
+                        <span class="user-avatar" aria-hidden="true">
+                            J
+                        </span>
+
+                        <div>
+                            <span class="user-label">
+                                Jugador
+                            </span>
+
+                            <strong id="nombre-usuario">
+                                Usuario
+                            </strong>
+                        </div>
+
+                    </div>
+
+                    <button class="auth-link logout-button" id="btn-logout" type="button">
+                        Cerrar sesión
+                    </button>
+
+                </div>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <!-- cabecera de biblioteca -->
+
+        <section class="library-hero">
+
+            <div class="container">
+
+                <p class="eyebrow">
+                    LIBRERÍA DE JUEGOS
+                </p>
+
+
+                <div class="library-heading">
+
+                    <div>
+
+                        <h1>
+                            Tu colección.
+                            <span>Tu forma de jugar.</span>
+                        </h1>
+
+                        <p>
+                            Guardá los juegos que te interesan,
+                            seguí tu progreso y mantené organizada
+                            tu próxima aventura.
+                        </p>
+
+                    </div>
+
+
+                    <a href="index.html#catalogo" class="btn btn-primary">
+                        + Buscar juegos
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- resumen -->
+
+        <section class="library-summary">
+
+            <div class="container library-summary-grid">
+
+                <article class="library-stat">
+
+                    <span id="cantidad-total" class="library-stat-number">
+                        0
+                    </span>
+
+                    <div>
+                        <h3>Mi biblioteca</h3>
+                        <p>Juegos guardados</p>
+                    </div>
+
+                </article>
+
+
+                <article class="library-stat">
+
+                    <span id="cantidad-pendientes" class="library-stat-number">
+                        0
+                    </span>
+
+                    <div>
+                        <h3>Quiero jugar</h3>
+                        <p>Para más adelante</p>
+                    </div>
+
+                </article>
+
+
+                <article class="library-stat">
+
+                    <span id="cantidad-jugando" class="library-stat-number">
+                        0
+                    </span>
+
+                    <div>
+                        <h3>Jugando</h3>
+                        <p>En progreso</p>
+                    </div>
+
+                </article>
+
+
+                <article class="library-stat">
+
+                    <span id="cantidad-completados" class="library-stat-number">
+                        0
+                    </span>
+
+                    <div>
+                        <h3>Terminados</h3>
+                        <p>Juegos completados</p>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <div class="container library-content">
+
+            <!-- qué juego hoy -->
+
+            <section class="section-block recommendation-section" id="que-juego">
+
+                <div class="section-heading recommendation-title">
+
+                    <p class="eyebrow">
+                        RECOMENDADOR
+                    </p>
+
+                    <h2>
+                        ¿Qué juego hoy?
+                    </h2>
+
+                    <p>
+                        Elegí tus ganas de jugar, género y plataforma
+                        para recomendar un título de tu biblioteca.
+                    </p>
+
+                </div>
+
+
+                <div class="play-today-panel">
+
+                    <div class="play-today-copy">
+
+                        <div class="recommendation-group">
+
+                            <span class="recommendation-label">
+                                GANAS DE JUGAR
+                            </span>
+
+
+                            <div class="recommendation-options">
+
+                                <button
+                                    type="button"
+                                    class="recommendation-chip mood-chip"
+                                    data-mood="relajado"
+                                >
+                                    Relajado
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="recommendation-chip mood-chip active"
+                                    data-mood="accion"
+                                >
+                                    Acción rápida
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="recommendation-chip mood-chip"
+                                    data-mood="historia"
+                                >
+                                    Historia
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="recommendation-chip mood-chip"
+                                    data-mood="reto"
+                                >
+                                    Reto
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="recommendation-selects">
+
+                            <div class="filter-group">
+
+                                <label for="recomendador-genero">
+                                    GÉNERO
+                                </label>
+
+                                <select id="recomendador-genero">
+                                    <option value="">Todos</option>
+                                </select>
+
+                            </div>
+
+
+                            <div class="filter-group">
+
+                                <label for="recomendador-plataforma">
+                                    PLATAFORMA
+                                </label>
+
+                                <select id="recomendador-plataforma">
+                                    <option value="">Todas</option>
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="recommendation-actions">
+
+                            <button id="elegir-juego" class="btn btn-primary" type="button">
+                                ✣ Elegir por mí
+                            </button>
+
+                            <button id="elegir-otro" class="btn btn-secondary" type="button" disabled>
+                                ↻ Probar otro
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div id="resultado-juego" class="play-today-result">
+
+                        <div class="recommendation-empty">
+
+                            <span class="recommendation-kicker">
+                                TU PRÓXIMA PARTIDA
+                            </span>
+
+                            <p class="muted">
+                                Elegí tus preferencias y GameShelf
+                                te recomienda un juego.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- mi biblioteca -->
+
+            <section class="section-block library-section" id="biblioteca">
+
+                <div class="section-heading library-title-row">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            MIS JUEGOS
+                        </p>
+
+                        <h2>
+                            Mi biblioteca
+                        </h2>
+
+                        <p>
+                            Todos los videojuegos que guardaste
+                            en tu cuenta.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- filtros -->
+
+                <form id="form-biblioteca" class="filters-panel library-filters">
+
+                    <div class="filter-group search-group">
+
+                        <label for="buscar-biblioteca">
+                            Buscar
+                        </label>
+
+                        <input
+                            id="buscar-biblioteca"
+                            type="search"
+                            placeholder="Buscar en mi biblioteca"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                    <div class="filter-group">
+
+                        <label for="estado-biblioteca-filtro">
+                            Estado
+                        </label>
+
+                        <select id="estado-biblioteca-filtro">
+                            <option value="">Todos</option>
+                            <option value="quiero jugar">Quiero jugar</option>
+                            <option value="jugando">Jugando</option>
+                            <option value="terminado">Terminado</option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="filter-group">
+
+                        <label for="orden-biblioteca">
+                            Ordenar
+                        </label>
+
+                        <select id="orden-biblioteca">
+                            <option value="">Agregados recientemente</option>
+                            <option value="titulo">Nombre</option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="filter-actions">
+
+                        <button class="btn btn-primary" type="submit">
+                            Aplicar
+                        </button>
+
+                        <button id="limpiar-biblioteca" class="btn btn-secondary" type="button">
+                            Limpiar
+                        </button>
+
+                    </div>
+
+                </form>
+
+
+                <!-- estado -->
+
+                <div id="estado-biblioteca" class="status" role="status">
+                    Cargando tu biblioteca...
+                </div>
+
+
+                <!-- juegos -->
+
+                <div id="lista-biblioteca" class="games-grid library-grid">
+                </div>
+
+
+                <!-- biblioteca vacía -->
+
+                <div id="biblioteca-vacia" class="empty-library" style="display: none;">
+
+                    <span class="empty-library-icon">
+                        +
+                    </span>
+
+                    <h3>
+                        Tu biblioteca está vacía.
+                    </h3>
+
+                    <p>
+                        Explorá el catálogo y agregá juegos
+                        para empezar a construir tu colección.
+                    </p>
+
+                    <a href="index.html#catalogo" class="btn btn-primary">
+                        Explorar juegos
+                    </a>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- modal para editar juego -->
+
+    <div id="editar-modal" class="modal" style="display: none;">
+
+        <div class="modal-backdrop" id="editar-backdrop">
+        </div>
+
+
+        <section
+            class="modal-panel library-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="editar-titulo"
+        >
+
+            <div class="modal-toolbar">
+
+                <span class="eyebrow">
+                    EDIT GAME
+                </span>
+
+                <button
+                    id="cerrar-editar"
+                    class="modal-close"
+                    type="button"
+                    aria-label="Cerrar"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="edit-game-layout">
+
+                <div id="editar-juego-info" class="edit-game-preview">
+                </div>
+
+
+                <form id="form-editar-juego" class="edit-game-form">
+
+                    <div class="filter-group">
+
+                        <label for="editar-estado">
+                            Estado
+                        </label>
+
+                        <select id="editar-estado" required>
+                            <option value="quiero jugar">Quiero jugar</option>
+                            <option value="jugando">Jugando</option>
+                            <option value="terminado">Terminado</option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="filter-group">
+
+                        <label for="editar-nota">
+                            Nota personal
+                        </label>
+
+                        <textarea
+                            id="editar-nota"
+                            rows="5"
+                            placeholder="Escribí algo sobre este juego..."
+                        ></textarea>
+
+                    </div>
+
+
+                    <p id="mensaje-editar" class="form-message"></p>
+
+
+                    <div class="edit-actions">
+
+                        <button class="btn btn-primary" type="submit">
+                            Guardar cambios
+                        </button>
+
+                        <button id="eliminar-juego" class="btn btn-danger" type="button">
+                            Eliminar de mi biblioteca
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- footer -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-layout">
+
+            <p>
+                GameShelf · Programación 2
+            </p>
+
+            <p>
+                Tu biblioteca personal de videojuegos
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script type="module" src="./js/biblioteca.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="description"
+        content="Explorá videojuegos gratuitos, descubrí nuevos títulos y armá tu propia biblioteca en GameShelf."
+    >
+
+    <title>GameShelf</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- header -->
+
+    <header class="site-header">
+
+        <nav class="nav container" aria-label="Navegación principal">
+
+            <a href="index.html" class="brand">
+                <span class="brand-icon" aria-hidden="true">GS</span>
+                <span>GameShelf</span>
+            </a>
+
+
+            <div class="nav-right">
+
+                <ul class="nav-links">
+
+                    <li>
+                        <a href="index.html">
+                            Explorar
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="index.html#destacados">
+                            Destacados
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="biblioteca.html">
+                            Mi biblioteca
+                        </a>
+                    </li>
+
+                </ul>
+
+
+                <!-- sin sesión -->
+
+                <div class="auth-area auth-guest" id="auth-guest">
+
+                    <button class="auth-link" id="btn-login" type="button">
+                        Iniciar sesión
+                    </button>
+
+                    <button class="btn btn-primary auth-register" id="btn-register" type="button">
+                        Registrarse
+                    </button>
+
+                </div>
+
+
+                <!-- con sesión -->
+
+                <div class="auth-area auth-user" id="auth-user" style="display: none;">
+
+                    <div class="user-info">
+
+                        <span class="user-avatar" aria-hidden="true">
+                            J
+                        </span>
+
+                        <div>
+                            <span class="user-label">
+                                Jugador
+                            </span>
+
+                            <strong id="nombre-usuario">
+                                Juana
+                            </strong>
+                        </div>
+
+                    </div>
+
+                    <button class="auth-link logout-button" id="btn-logout" type="button">
+                        Cerrar sesión
+                    </button>
+
+                </div>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <!-- hero -->
+
+        <section class="hero" id="inicio" aria-labelledby="titulo-principal">
+
+            <div class="container hero-grid">
+
+                <div class="hero-copy">
+
+                    <p class="eyebrow">
+                        PLAY · SAVE · DISCOVER
+                    </p>
+
+                    <h1 id="titulo-principal">
+                        Encontrá tu próxima
+                        <span>obsesión.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Descubrí videojuegos gratuitos,
+                        explorá nuevos mundos y guardá tus favoritos
+                        en una biblioteca hecha a tu manera.
+                    </p>
+
+
+                    <div class="hero-actions">
+
+                        <a href="#catalogo" class="btn btn-primary">
+                            Explorar juegos
+                            <span aria-hidden="true">→</span>
+                        </a>
+
+                        <a href="biblioteca.html" class="btn btn-secondary">
+                            Mi biblioteca
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- juego sorpresa -->
+
+                <article class="surprise-card" aria-live="off">
+
+                    <p class="eyebrow">
+                        RANDOM PICK
+                    </p>
+
+                    <div class="surprise-image-shell">
+
+                        <img id="sorpresa-imagen" alt="" style="display: none;">
+
+                        <div id="sorpresa-placeholder" class="image-placeholder">
+                            Buscando un juego...
+                        </div>
+
+                    </div>
+
+
+                    <div class="surprise-body">
+
+                        <h2 id="sorpresa-titulo">
+                            Un juego para descubrir
+                        </h2>
+
+                        <p id="sorpresa-descripcion" class="muted">
+                            Estamos buscando una nueva aventura para vos.
+                        </p>
+
+                        <div id="sorpresa-etiquetas" class="tags"></div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <div class="container">
+
+            <!-- destacados -->
+
+            <section class="section-block" id="destacados" aria-labelledby="titulo-destacados">
+
+                <div class="section-heading">
+
+                    <p class="eyebrow">
+                        DESTACADOS
+                    </p>
+
+                    <h2 id="titulo-destacados">
+                        Juegos que vale la pena descubrir.
+                    </h2>
+
+                    <p>
+                        Una selección de títulos gratuitos
+                        para tu próxima partida.
+                    </p>
+
+                </div>
+
+
+                <div id="estado-destacados" class="status" role="status">
+                    Cargando juegos destacados...
+                </div>
+
+                <div id="lista-destacados" class="games-grid featured-grid"></div>
+
+            </section>
+
+
+            <!-- lanzamientos -->
+
+            <section class="section-block" id="lanzamientos" aria-labelledby="titulo-lanzamientos">
+
+                <div class="section-heading">
+
+                    <p class="eyebrow">
+                        LANZAMIENTOS
+                    </p>
+
+                    <h2 id="titulo-lanzamientos">
+                        Recién llegados.
+                    </h2>
+
+                    <p>
+                        Los últimos videojuegos incorporados
+                        al catálogo de GameShelf.
+                    </p>
+
+                </div>
+
+
+                <div class="slider-layout">
+
+                    <button
+                        id="anterior"
+                        class="slider-arrow"
+                        type="button"
+                        aria-label="Lanzamiento anterior"
+                        disabled
+                    >
+                        ‹
+                    </button>
+
+
+                    <div class="slider-stage">
+
+                        <div id="estado-lanzamientos" class="status" role="status">
+                            Cargando últimos lanzamientos...
+                        </div>
+
+                        <button
+                            id="reintentar-lanzamientos"
+                            class="btn btn-secondary"
+                            type="button"
+                            style="display: none;"
+                        >
+                            Reintentar
+                        </button>
+
+                        <div id="contenido-lanzamiento"></div>
+
+                    </div>
+
+
+                    <button
+                        id="siguiente"
+                        class="slider-arrow"
+                        type="button"
+                        aria-label="Siguiente lanzamiento"
+                        disabled
+                    >
+                        ›
+                    </button>
+
+                </div>
+
+                <p id="contador-lanzamientos" class="slider-counter" aria-live="polite"></p>
+
+            </section>
+
+
+            <!-- catálogo general -->
+
+            <section class="section-block catalog-section" id="catalogo" aria-labelledby="titulo-catalogo">
+
+                <div class="section-heading">
+
+                    <p class="eyebrow">
+                        EXPLORAR
+                    </p>
+
+                    <h2 id="titulo-catalogo">
+                        Todos los juegos.
+                        Una próxima partida.
+                    </h2>
+
+                    <p>
+                        Buscá por nombre y combiná plataforma,
+                        género y ordenamiento.
+                    </p>
+
+                </div>
+
+
+                <!-- filtros -->
+
+                <form id="form-filtros" class="filters-panel">
+
+                    <div class="filter-group search-group">
+
+                        <label for="busqueda">
+                            Buscar
+                        </label>
+
+                        <input
+                            id="busqueda"
+                            type="search"
+                            placeholder="Ej.: Genshin Impact"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                    <div class="filter-group">
+
+                        <label for="plataforma">
+                            Plataforma
+                        </label>
+
+                        <select id="plataforma">
+                            <option value="">Todas</option>
+                            <option value="windows">PC (Windows)</option>
+                            <option value="browser">Navegador</option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="filter-group">
+
+                        <label for="categoria">
+                            Género
+                        </label>
+
+                        <select id="categoria">
+                            <option value="">Todos</option>
+                            <option value="shooter">Shooter</option>
+                            <option value="mmorpg">MMORPG</option>
+                            <option value="strategy">Strategy</option>
+                            <option value="racing">Racing</option>
+                            <option value="sports">Sports</option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="filter-group">
+
+                        <label for="orden">
+                            Ordenar
+                        </label>
+
+                        <select id="orden">
+                            <option value="">Sin orden específico</option>
+                            <option value="release-date">Más recientes</option>
+                            <option value="alphabetical">Alfabéticamente</option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="filter-actions">
+
+                        <button class="btn btn-primary" type="submit" id="aplicar-filtros">
+                            Aplicar filtros
+                        </button>
+
+                        <button class="btn btn-secondary" type="button" id="limpiar-filtros">
+                            Limpiar
+                        </button>
+
+                    </div>
+
+                </form>
+
+
+                <div class="catalog-results-heading">
+                    <p id="cantidad-juegos" aria-live="polite">
+                        Preparando catálogo...
+                    </p>
+                </div>
+
+
+                <div id="estado-catalogo" class="status" role="status">
+                    Cargando videojuegos...
+                </div>
+
+                <button
+                    id="reintentar-catalogo"
+                    class="btn btn-secondary"
+                    type="button"
+                    style="display: none;"
+                >
+                    Reintentar
+                </button>
+
+                <div id="lista-catalogo" class="games-grid catalog-grid"></div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- detalle -->
+
+    <div id="detalle-modal" class="modal" style="display: none;">
+
+        <div class="modal-backdrop" id="modal-backdrop"></div>
+
+
+        <section
+            class="modal-panel"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="detalle-titulo"
+            tabindex="-1"
+        >
+
+            <div class="modal-toolbar">
+
+                <span class="eyebrow">
+                    GAME DETAILS
+                </span>
+
+                <button
+                    class="modal-close"
+                    id="cerrar-detalle"
+                    type="button"
+                    aria-label="Cerrar detalle"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div
+                id="estado-detalle"
+                class="status"
+                role="status"
+                style="display: none;"
+            ></div>
+
+
+            <button
+                id="reintentar-detalle"
+                class="btn btn-secondary"
+                type="button"
+                style="display: none;"
+            >
+                Reintentar
+            </button>
+
+
+            <div id="contenido-detalle"></div>
+
+        </section>
+
+    </div>
+
+
+    <!-- footer -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-layout">
+
+            <p>
+                GameShelf · Programación 2
+            </p>
+
+            <p>
+                Datos proporcionados por FreeToGame
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script type="module" src="./js/main.js"></script>
+
+</body>
+
+</html>
